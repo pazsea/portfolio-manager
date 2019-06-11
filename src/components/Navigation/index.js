@@ -23,33 +23,33 @@ class Navigation extends Component {
         <Nav navOpen={navOpen}>
           <li>
             <NavLink
-              to={ROUTES.PORTFOLIOS}
+              to={ROUTES.HOME}
               activeStyle={{
-                fontWeight: "bold",
                 color: "white",
                 textShadow:
                   "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black"
               }}
             >
-              Portfolios
+              Home <i class="fas fa-home"></i>
             </NavLink>
           </li>
 
           <li>
-          <button >Sign Out</button>
-            {/* <NavLink
+            <NavLink
               to={ROUTES.PORTFOLIOS}
               activeStyle={{
-                fontWeight: "bold",
                 color: "white",
                 textShadow:
                   "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black"
               }}
             >
-              My Portfolios
-            </NavLink> */}
+              My Portfolios <i className="fas fa-briefcase"></i>
+            </NavLink>
           </li>
- 
+          <li>
+            <button>Sign Out <i class="fas fa-sign-out-alt"></i></button>
+
+          </li>
         </Nav>
       </Fragment>
     );
