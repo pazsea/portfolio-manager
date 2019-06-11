@@ -13,10 +13,11 @@ import * as ROUTES from "../../constants/routes";
 @observer
 class App extends Component {
   render() {
+    const { AuthStore } = this.props;
     return (
       <Router>
         <GlobalStyle />
-        <Navigation />
+        {AuthStore.access.length ? <Navigation /> : null}
         <Route exact path={ROUTES.LOGIN} component={Login} />
         <Route path={ROUTES.PORTFOLIOS} component={Portfolios} />
       </Router>
