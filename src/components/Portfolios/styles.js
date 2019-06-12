@@ -62,6 +62,7 @@ export const PortfolioDiv = styled.div`
 
 export const DetailDiv = styled.div`
   display: flex;
+  flex-wrap:wrap;
   margin: 2% auto;
   width: 70%;
   padding: 1%;
@@ -69,15 +70,16 @@ export const DetailDiv = styled.div`
   border-radius: 10px;
 
   .graph {
-    flex: 1;
+    flex: 1 1 45%;
     margin-right: 1%;
     /* border: 1px solid green; */
   }
+
   .wrapper {
     background: #f1ffe7;
     display: flex;
     flex-direction: column;
-    flex: 1;
+    flex: 1 1 45%;
     padding: 1% 1% 0.5% 1%;
     /* border: 1px solid green; */
     .info {
@@ -107,5 +109,9 @@ export const DetailDiv = styled.div`
         cursor: pointer;
       }
     }
+  }
+  .companyDetails {
+    flex: 1 1 50%;
+    border: 10px solid red;
   }
 `;

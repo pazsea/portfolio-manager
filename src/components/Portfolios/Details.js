@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { APIMyPortfolioDetailID } from "../../api";
 import { DetailDiv, InfoTable } from "./styles";
 
@@ -47,7 +47,18 @@ class Details extends Component {
   }
 }
 
-const Detail = () => ({
+class Detail extends Component {
+  state = {};
+
+  showCompanyDetails(e, id) {
+    this.setState(
+      prevState => ({
+        ...this.state,
+        [id]: !prevState[id]
+      })
+    );
+    e.preventDefault();
+  }
   render() {
     const { result } = this.props;
     return (
@@ -63,9 +74,9 @@ const Detail = () => ({
               [
                 "Day",
                 0,
-                result.instrument.yield_today === "null"
+                result.instrument.yield_1d === "null"
                   ? 0
-                  : result.instrument.yield_today,
+                  : result.instrument.yield_1d,
                 0
               ],
               [
@@ -87,9 +98,9 @@ const Detail = () => ({
               [
                 "Year",
                 0,
-                result.instrument.yield_ty === null
+                result.instrument.yield_1y === null
                   ? 0
-                  : result.instrument.yield_ty,
+                  : result.instrument.yield_1y,
                 0
               ]
             ]}
@@ -112,7 +123,7 @@ const Detail = () => ({
               <tbody>
                 <tr>
                   <th />
-                  <th>Company</th>
+                  <th>Allocation</th>
 
                   <th>Price today</th>
                   <th>Price close</th>
@@ -123,8 +134,8 @@ const Detail = () => ({
                   <td>
                     <img src={graph} alt="" />
                   </td>
-                  <td>{result.instrument.name}</td>
-                  <td>{result.price_today} </td>
+                  <td>{result.allocation}</td>
+                  <td>{result.instrument.price_today} </td>
                   <td>{result.instrument.price_close} </td>
                   <td>
                     {result.instrument.price_high +
@@ -136,13 +147,38 @@ const Detail = () => ({
             </InfoTable>
           </div>
 
+          <button onClick={e => this.showCompanyDetails(e, result.id)}>
+            View {result.instrument.name}'s details{" "}
+          </button>
+
           {/* <Link to={ROUTES.DETAILS} onClick={() => this.props.setId(result.id)}>
-            <button>View Details</button>
-          </Link> */}
+              <button>View Details</button>
+            </Link> */}
         </div>
+        {this.state[result.id] ? (
+          <div className="companyDetails">
+            Case had never seen him wear the same suit twice, although his
+            wardrobe seemed to consist entirely of meticulous reconstruction’s
+            of garments of the room where Case waited. A narrow wedge of light
+            from a half-open service hatch at the rear of the arcade showed him
+            broken lengths of damp chipboard and the dripping chassis of a
+            gutted game console. Light from a service hatch at the rear of the
+            deck sting his palm as he made his way down Shiga from the sushi
+            stall he cradled it in his capsule in some coffin hotel, his hands
+            clawed into the nearest door and watched the other passengers as he
+            rode. Her cheekbones flaring scarlet as Wizard’s Castle burned,
+            forehead drenched with azure when Munich fell to the Tank War, mouth
+            touched with hot gold as a paid killer in the Japanese night like
+            live wire voodoo and he’d cry for it, cry in his jacket pocket.
+            Still it was a steady pulse of pain midway down his spine. Case felt
+            the edge of the console in faded pinks and yellows. Strata of
+            cigarette smoke rose from the tiers, drifting until it struck
+            currents set up by the blowers and the robot gardener.
+          </div>
+        ) : null}
       </DetailDiv>
     );
   }
-});
+}
 
 export default Details;
