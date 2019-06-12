@@ -21,13 +21,17 @@ class App extends Component {
     return (
       <Router>
         <GlobalStyle />
-        {token.length ? <Navigation /> : null}
+        {token ? token.length ? <Navigation /> : null : null}
 
         <Route
           path={ROUTES.HOME}
           render={routeProps =>
-            token.length ? (
-              <Home {...routeProps} AuthStore={AuthStore} />
+            token ? (
+              token.length ? (
+                <Home {...routeProps} AuthStore={AuthStore} />
+              ) : (
+                <Login {...routeProps} AuthStore={AuthStore} />
+              )
             ) : (
               <Login {...routeProps} AuthStore={AuthStore} />
             )
@@ -37,8 +41,12 @@ class App extends Component {
           exact
           path={ROUTES.LOGIN}
           render={routeProps =>
-            token.length ? (
-              <Home {...routeProps} AuthStore={AuthStore} />
+            token ? (
+              token.length ? (
+                <Home {...routeProps} AuthStore={AuthStore} />
+              ) : (
+                <Login {...routeProps} AuthStore={AuthStore} />
+              )
             ) : (
               <Login {...routeProps} AuthStore={AuthStore} />
             )
@@ -47,8 +55,12 @@ class App extends Component {
         <Route
           path={ROUTES.PORTFOLIOS}
           render={routeProps =>
-            token.length ? (
-              <Portfolios {...routeProps} AuthStore={AuthStore} />
+            token ? (
+              token.length ? (
+                <Portfolios {...routeProps} AuthStore={AuthStore} />
+              ) : (
+                <Login {...routeProps} AuthStore={AuthStore} />
+              )
             ) : (
               <Login {...routeProps} AuthStore={AuthStore} />
             )
@@ -59,8 +71,12 @@ class App extends Component {
           render={routeProps =>
             AuthStore.detailsId.length ? (
               <Details {...routeProps} AuthStore={AuthStore} />
-            ) : token.length ? (
-              <Portfolios {...routeProps} AuthStore={AuthStore} />
+            ) : token ? (
+              token.length ? (
+                <Portfolios {...routeProps} AuthStore={AuthStore} />
+              ) : (
+                <Login {...routeProps} AuthStore={AuthStore} />
+              )
             ) : (
               <Login {...routeProps} AuthStore={AuthStore} />
             )

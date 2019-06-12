@@ -6,15 +6,14 @@ import * as ROUTES from "../../constants/routes";
 import { Nav } from "./styles";
 
 class Navigation extends Component {
-  state = {
-    navOpen: false
-  };
+  state = {};
 
-  toggleNav = () => {
-    this.setState(prevState => ({
-      navOpen: !prevState.navOpen
-    }));
-  };
+  signOut() {
+    const { history } = this.props;
+    console.log("LOOOGGGAAA UTTT")
+    localStorage.removeItem("jwtToken");
+    window.location.reload()
+  }
 
   render() {
     const { navOpen } = this.state;
@@ -42,7 +41,7 @@ class Navigation extends Component {
             </NavLink>
           </li>
           <li>
-            <NavLink to={ROUTES.HOME}>
+            <NavLink to={ROUTES.HOME} onClick={() => this.signOut()}>
               Sign Out <i className="fas fa-sign-out-alt" />
             </NavLink>
           </li>
