@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { LoginForm } from "./styles";
 // import fetch from "isomorphic-unfetch";
 import { inject, observer } from "mobx-react";
+import { APIGetToken } from "../../api";
 
 @inject("AuthStore")
 @observer
@@ -21,11 +22,11 @@ class Login extends Component {
     event.preventDefault();
     const { email, password } = this.state;
     const { AuthStore } = this.props;
-    const url = "https://beta.stockzoom.com/api-token-auth/";
+
     console.log(email, password);
 
     try {
-      const response = await fetch(url, {
+      const response = await fetch(APIGetToken, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })

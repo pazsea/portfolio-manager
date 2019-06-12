@@ -22,16 +22,33 @@ class App extends Component {
 
         <Route
           path={ROUTES.HOME}
-          component={AuthStore.access.length ? Home : Login}
+          render={routeProps =>
+            AuthStore.access.length ? (
+              <Home {...routeProps} AuthStore={AuthStore} />
+            ) : (
+              <Login {...routeProps} AuthStore={AuthStore} />
+            )
+          }
         />
         <Route
           exact
           path={ROUTES.LOGIN}
-          component={AuthStore.access.length ? Home : Login}
+          render={routeProps =>
+            AuthStore.access.length ? (
+              <Home {...routeProps} AuthStore={AuthStore} />
+            ) : (
+              <Login {...routeProps} AuthStore={AuthStore} />
+            )
+          }
         />
         <Route
           path={ROUTES.PORTFOLIOS}
-          component={AuthStore.access.length ? Portfolios : Login}
+          render={routeProps =>
+            AuthStore.access.length ? (
+              <Portfolios {...routeProps} AuthStore={AuthStore} />
+            ) : (
+              <Login {...routeProps} AuthStore={AuthStore} />
+            )}
         />
       </Router>
     );

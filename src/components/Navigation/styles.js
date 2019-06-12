@@ -10,6 +10,8 @@ export const Nav = styled.nav`
   list-style: none;
   margin: 1% auto;
   justify-content: space-around;
+  background: #6290C3;
+
 
   li {
     a {

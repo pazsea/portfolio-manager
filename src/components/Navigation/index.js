@@ -30,7 +30,7 @@ class Navigation extends Component {
                   "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black"
               }}
             >
-              Home <i class="fas fa-home"></i>
+              Home <i className="fas fa-home"></i>
             </NavLink>
           </li>
 
@@ -47,7 +47,7 @@ class Navigation extends Component {
             </NavLink>
           </li>
           <li>
-            <button>Sign Out <i class="fas fa-sign-out-alt"></i></button>
+            <button>Sign Out <i className="fas fa-sign-out-alt"></i></button>
 
           </li>
         </Nav>
