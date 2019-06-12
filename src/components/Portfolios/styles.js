@@ -39,8 +39,12 @@ export const PortfolioDiv = styled.div`
         font-family: "Oswald", sans-serif;
       }
     }
-    button {
+    a{
       flex: 1;
+    }
+    button {
+width: 100%;
+
       color: white;
       font-size: 18px;
       background: black;

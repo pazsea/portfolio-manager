@@ -76,11 +76,8 @@ class Portfolio extends Component {
             </InfoTable>
           </div>
 
-          <Link
-            to={ROUTES.DETAILS}
-            onClick={() => this.props.setId(result.id)}
-          >
-            View Details
+          <Link to={ROUTES.DETAILS} onClick={() => this.props.setId(result.id)}>
+            <button>View Details</button>
           </Link>
         </div>
       </PortfolioDiv>

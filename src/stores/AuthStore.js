@@ -9,8 +9,7 @@ class AuthStore {
   };
 
   @action setId = id => {
-    // this.detailsId.push(id);
-    this.detailsId.splice(0, 0, id);
+    this.detailsId.splice(0, 1, id);
   };
 
   @computed
