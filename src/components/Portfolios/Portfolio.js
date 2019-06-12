@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { PortfolioDiv, InfoTable } from "./styles";
 import graph from "../../images/graph.png";
 import Chart from "react-google-charts";
-import { userInfo } from "os";
+import { Link } from "react-router-dom";
+import * as ROUTES from "../../constants/routes";
 
 class Portfolio extends Component {
   state = {
@@ -46,29 +47,41 @@ class Portfolio extends Component {
             <h2>Specific Portfolio</h2>
 
             <InfoTable cellspacing="0">
-              <tr>
-                <th />
-                <th>Owner</th>
-                <th>Market value</th>
-                <th>Total cash</th>
-              </tr>
+              <tbody>
+                <tr>
+                  <th />
+                  <th>Owner</th>
 
-              <tr>
-                <td>
-                  <img src={graph} alt="" />
-                </td>
-                <td>{result.user.first_name + " " + result.user.last_name} </td>
-                <td>
-                  {result.market_value === null
-                    ? 0
-                    : result.market_value + " " + result.currency}{" "}
-                </td>
-                <td>{result.total_cash + " " + result.currency} </td>
-              </tr>
+                  <th>Available</th>
+                  <th>Market value</th>
+                  <th>Totaljj</th>
+                </tr>
+
+                <tr>
+                  <td>
+                    <img src={graph} alt="" />
+                  </td>
+                  <td>
+                    {result.user.first_name + " " + result.user.last_name}{" "}
+                  </td>
+                  <td>{result.available_cash + " " + result.currency} </td>
+                  <td>
+                    {result.market_value === null
+                      ? 0
+                      : result.market_value + " " + result.currency}{" "}
+                  </td>
+                  <td>{result.total_cash + " " + result.currency} </td>
+                </tr>
+              </tbody>
             </InfoTable>
           </div>
 
-          <button>View Details</button>
+          <Link
+            to={ROUTES.DETAILS}
+            onClick={() => this.props.setId(result.id)}
+          >
+            View Details
+          </Link>
         </div>
       </PortfolioDiv>
     );

@@ -2,13 +2,19 @@ import { observable, action, computed } from "mobx";
 
 class AuthStore {
   @observable access = [];
-//   @observable login = false;
+  @observable detailsId = [];
 
   @action addToken = token => {
     this.access.push(token);
   };
 
-  @computed get currentToken() {
+  @action setId = id => {
+    // this.detailsId.push(id);
+    this.detailsId.splice(0, 0, id);
+  };
+
+  @computed
+  get currentToken() {
     return this.access.token;
   }
 }

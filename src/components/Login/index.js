@@ -34,7 +34,7 @@ class Login extends Component {
       if (response.ok) {
         console.log("!!SUCESS!!");
         const { token } = await response.json();
-        localStorage.setItem("token", token);
+        localStorage.setItem("jwtToken", token);
         console.log("i getz token " + token);
         AuthStore.addToken(token);
         // Router.push("/profile");

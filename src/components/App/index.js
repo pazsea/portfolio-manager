@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navigation from "../Navigation";
 import Login from "../Login";
 import Portfolios from "../Portfolios";
+import Details from "../Portfolios/Details";
+
 import Home from "../Home";
 
 import * as ROUTES from "../../constants/routes";
@@ -15,15 +17,16 @@ import * as ROUTES from "../../constants/routes";
 class App extends Component {
   render() {
     const { AuthStore } = this.props;
+    const token = localStorage.getItem("jwtToken");
     return (
       <Router>
         <GlobalStyle />
-        {AuthStore.access.length ? <Navigation /> : null}
+        {token.length ? <Navigation /> : null}
 
         <Route
           path={ROUTES.HOME}
           render={routeProps =>
-            AuthStore.access.length ? (
+            token.length ? (
               <Home {...routeProps} AuthStore={AuthStore} />
             ) : (
               <Login {...routeProps} AuthStore={AuthStore} />
@@ -34,7 +37,7 @@ class App extends Component {
           exact
           path={ROUTES.LOGIN}
           render={routeProps =>
-            AuthStore.access.length ? (
+            token.length ? (
               <Home {...routeProps} AuthStore={AuthStore} />
             ) : (
               <Login {...routeProps} AuthStore={AuthStore} />
@@ -44,11 +47,24 @@ class App extends Component {
         <Route
           path={ROUTES.PORTFOLIOS}
           render={routeProps =>
-            AuthStore.access.length ? (
+            token.length ? (
               <Portfolios {...routeProps} AuthStore={AuthStore} />
             ) : (
               <Login {...routeProps} AuthStore={AuthStore} />
-            )}
+            )
+          }
+        />
+        <Route
+          path={ROUTES.DETAILS}
+          render={routeProps =>
+            AuthStore.detailsId.length ? (
+              <Details {...routeProps} AuthStore={AuthStore} />
+            ) : token.length ? (
+              <Portfolios {...routeProps} AuthStore={AuthStore} />
+            ) : (
+              <Login {...routeProps} AuthStore={AuthStore} />
+            )
+          }
         />
       </Router>
     );

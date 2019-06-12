@@ -2,68 +2,40 @@ import styled from "styled-components";
 
 export const Nav = styled.nav`
   display: flex;
-  font-size: 1rem;
   background: #efe2ba;
-  width: 70%;
+  width: 30%;
   /* z-index: 60; */
+  /* border: 1px solid red; */
   font-style: bold;
   list-style: none;
   margin: 1% auto;
-  justify-content: space-around;
-  background: #6290C3;
-
+  justify-content: space-between;
+  background: #6290c3;
 
   li {
     a {
-      -moz-box-shadow: inset 0px 1px 2px -50px #a6827e;
-      -webkit-box-shadow: inset 0px 1px 2px -50px #a6827e;
-      box-shadow: inset 0px 1px 2px -50px #a6827e;
-      background-color: #c79d73;
-      -moz-border-radius: 3px;
-      -webkit-border-radius: 3px;
-      border-radius: 3px;
-      display: inline-block;
-      cursor: pointer;
-      color: #ffffff;
-      font-family: Arial;
-      padding: 0.6em;
+      padding: 0;
+      margin: 0;
       text-decoration: none;
-      text-shadow: 0px 1px 0px #4d3534;
+      color: white; 
+      border: 1px solid white;
+      padding: 0.3em;
+      font-size: 20px;
 
       :hover {
-        background-color: #634b30;
+        background: white;
+        color: black;
       }
-      :active {
-        position: relative;
-        top: 1px;
-      }
-    }
-    button {
-      -moz-box-shadow: inset 0px 1px 2px -50px #a6827e;
-      -webkit-box-shadow: inset 0px 1px 2px -50px #a6827e;
-      box-shadow: inset 0px 1px 2px -50px #a6827e;
-      background-color: #c79d73;
-      -moz-border-radius: 3px;
-      -webkit-border-radius: 3px;
-      border-radius: 3px;
-      display: inline-block;
-      cursor: pointer;
-      color: #ffffff;
-      font-family: Arial;
-      padding: 0.6em;
-      text-decoration: none;
-      text-shadow: 0px 1px 0px #4d3534;
-      border: none;
-
-      :hover {
-        background-color: #634b30;
-      }
-      :active {
-        position: relative;
-        top: 1px;
-      }
-      i {
-        color: darkred;
+      button {
+        color: white;
+        background: none;
+        border: none;
+        padding-bottom: 0 !important;
+        font: inherit;
+        cursor: pointer;
+        :hover {
+          color: red;
+        }
       }
     }
   }
