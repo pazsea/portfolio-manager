@@ -7,4 +7,4 @@ export const APIMyPortfolioList =
 export const APIMyPortfolioDetailID =
   "https://beta.stockzoom.com/api/v1/me/portfolios/";
 export const APIInstrumentDetailID =
-  "https://beta.stockzoom.com/api/v1/me/instruments/";
+  "https://beta.stockzoom.com/api/v1/instruments/";

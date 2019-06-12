@@ -1,6 +1,8 @@
-import React, { Component, useState } from "react";
-import { APIMyPortfolioDetailID } from "../../api";
+import React, { Component, Fragment } from "react";
+import { APIMyPortfolioDetailID, APIInstrumentDetailID } from "../../api";
 import { DetailDiv, InfoTable } from "./styles";
+
+import StarRatingComponent from "react-star-rating-component";
 
 import graph from "../../images/graph.png";
 import Chart from "react-google-charts";
@@ -38,7 +40,7 @@ class Details extends Component {
         <div>
           {results.position
             ? results.position.map(result => {
-                return <Detail key={result.id} result={result} />;
+                return <Info key={result.id} result={result} />;
               })
             : null}
         </div>
@@ -47,20 +49,38 @@ class Details extends Component {
   }
 }
 
-class Detail extends Component {
-  state = {};
+class Info extends Component {
+  state = { loading: true };
+
+  componentDidMount() {
+    const {
+      instrument: { id }
+    } = this.props.result;
+    var token = localStorage.getItem("jwtToken");
+    fetch(APIInstrumentDetailID + id + "/", {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + token
+      }
+    })
+      .then(response => response.json())
+      .then(response => this.setState({ info: response, loading: false }))
+      .catch(function(response) {
+        if (response.status === "401") {
+          console.log("error");
+        }
+      });
+  }
 
   showCompanyDetails(e, id) {
-    this.setState(
-      prevState => ({
-        ...this.state,
-        [id]: !prevState[id]
-      })
-    );
-    e.preventDefault();
+    this.setState(prevState => ({
+      ["expand" + id]: !prevState["expand" + id]
+    }));
   }
+
   render() {
     const { result } = this.props;
+    const { loading, info } = this.state;
     return (
       <DetailDiv>
         <div className="graph">
@@ -108,7 +128,7 @@ class Detail extends Component {
               // Material design options
               chart: {
                 title: "Yield status",
-                subtitle: "Yield status during different"
+                subtitle: "Yield status during different timelines"
               }
             }}
             // For tests
@@ -147,7 +167,9 @@ class Detail extends Component {
             </InfoTable>
           </div>
 
-          <button onClick={e => this.showCompanyDetails(e, result.id)}>
+          <button
+            onClick={e => this.showCompanyDetails(e, result.instrument.id)}
+          >
             View {result.instrument.name}'s details{" "}
           </button>
 
@@ -155,27 +177,54 @@ class Detail extends Component {
               <button>View Details</button>
             </Link> */}
         </div>
-        {this.state[result.id] ? (
+
+        {loading ? null : this.state["expand" + result.instrument.id] ? (
           <div className="companyDetails">
-            Case had never seen him wear the same suit twice, although his
-            wardrobe seemed to consist entirely of meticulous reconstruction’s
-            of garments of the room where Case waited. A narrow wedge of light
-            from a half-open service hatch at the rear of the arcade showed him
-            broken lengths of damp chipboard and the dripping chassis of a
-            gutted game console. Light from a service hatch at the rear of the
-            deck sting his palm as he made his way down Shiga from the sushi
-            stall he cradled it in his capsule in some coffin hotel, his hands
-            clawed into the nearest door and watched the other passengers as he
-            rode. Her cheekbones flaring scarlet as Wizard’s Castle burned,
-            forehead drenched with azure when Munich fell to the Tank War, mouth
-            touched with hot gold as a paid killer in the Japanese night like
-            live wire voodoo and he’d cry for it, cry in his jacket pocket.
-            Still it was a steady pulse of pain midway down his spine. Case felt
-            the edge of the console in faded pinks and yellows. Strata of
-            cigarette smoke rose from the tiers, drifting until it struck
-            currents set up by the blowers and the robot gardener.
+            {info ? (
+              <Fragment>
+                <div className="desc">
+                  {info.company
+                    ? " " + info.company.description
+                    : "This company doesn't have an description."}
+                </div>
+                <ul>
+                  <li>
+                    Rating: <br />
+                    <StarRatingComponent
+                      name={"star" + result.instrument.id}
+                      value={info.rating ? info.rating : 0}
+                      editing={false}
+                    />
+                  </li>
+                  <li>
+                    Kind: <br />
+                    {info.kind ? info.kind : "Unknown"}{" "}
+                  </li>
+                  <li>
+                    Symbol: <br />
+                    {info.symbol ? info.symbol : "Unknown"}{" "}
+                  </li>
+                  <li>
+                    Week high/low:<br />{" "}
+                    {info.week_52_high && info.week_52_low
+                      ? info.week_52_high + "/" + info.week_52_low
+                      : "?/?"}
+                  </li>
+                </ul>
+              </Fragment>
+            ) : null}
           </div>
         ) : null}
+
+        {/* {loading ? null : this.state["expand" + result.instrument.id] ? (
+          <div className="companyDetails">{this.state.info.company ? 
+          <div className="companyDesc">          this.state.info.company.description </div>
+
+          
+          : 
+          
+          <div>{"This company has no description"} </div>
+        ) } */}
       </DetailDiv>
     );
   }
