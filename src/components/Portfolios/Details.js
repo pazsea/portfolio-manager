@@ -6,6 +6,7 @@ import StarRatingComponent from "react-star-rating-component";
 
 import graph from "../../images/graph.png";
 import Chart from "react-google-charts";
+import Loading from "../Loading";
 
 class Details extends Component {
   state = { loading: true };
@@ -34,7 +35,7 @@ class Details extends Component {
   render() {
     const { loading, results } = this.state;
     if (loading) {
-      return <div>Loading...</div>;
+      return <Loading />;
     } else {
       return (
         <div>
@@ -205,7 +206,8 @@ class Info extends Component {
                     {info.symbol ? info.symbol : "Unknown"}{" "}
                   </li>
                   <li>
-                    Week high/low:<br />{" "}
+                    Week high/low:
+                    <br />{" "}
                     {info.week_52_high && info.week_52_low
                       ? info.week_52_high + "/" + info.week_52_low
                       : "?/?"}

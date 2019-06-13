@@ -52,6 +52,7 @@
     "react-dom": "^16.8.6",
     "react-google-charts": "^3.0.13",
     "react-router-dom": "^5.0.1",
+    "react-spinners": "^0.5.4",
     "react-star-rating-component": "^1.4.1",
     "resolve": "1.10.0",
     "sass-loader": "7.1.0",

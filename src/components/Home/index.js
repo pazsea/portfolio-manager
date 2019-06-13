@@ -2,36 +2,38 @@ import React, { Component } from "react";
 import { APIMyPortfolioList } from "../../api";
 import { Wrapper } from "./styles";
 import buffett from "../../images/buffett.jpg";
+import Loading from "../Loading";
 class Home extends Component {
   state = { loading: true };
 
   componentDidMount() {
     var token = localStorage.getItem("jwtToken");
     console.log("Du kommer hit");
-
-    fetch(APIMyPortfolioList, {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + token
-      }
-    })
-      .then(response => response.json())
-      .then(
-        response =>
-          this.setState({ user: response.results[0].user, loading: false })
-        // console.log(response)
-      )
-      .catch(function(response) {
-        if (response.status === "401") {
-          console.log("error");
+    setInterval(() => {
+      fetch(APIMyPortfolioList, {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + token
         }
-      });
+      })
+        .then(response => response.json())
+        .then(
+          response =>
+            this.setState({ user: response.results[0].user, loading: false })
+          // console.log(response)
+        )
+        .catch(function(response) {
+          if (response.status === "401") {
+            console.log("error");
+          }
+        });
+    }, 500);
   }
 
   render() {
     const { user, loading } = this.state;
     if (loading) {
-      return <div>Loading...</div>;
+      return <Loading />;
     } else {
       return (
         <Wrapper>
