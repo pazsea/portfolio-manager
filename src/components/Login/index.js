@@ -29,7 +29,9 @@ class Login extends Component {
       body: JSON.stringify({ email, password })
     })
       .then(response => response.json())
-      .then(({ token }) => localStorage.setItem("jwtToken", token))
+      .then(({ token, data }) =>
+        localStorage.setItem("jwtToken", token, "data", data)
+      )
       .then(() => window.location.reload())
       .catch(function(response) {
         if (response.status === "401") {
