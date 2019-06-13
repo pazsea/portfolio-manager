@@ -19,9 +19,7 @@ class Login extends Component {
   }
   handleSubmit(event) {
     const { email, password } = this.state;
-    const { AuthStore } = this.props;
     event.preventDefault();
-    console.log(email, password);
 
     fetch(APIGetToken, {
       method: "POST",

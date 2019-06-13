@@ -8,7 +8,6 @@ class Home extends Component {
 
   componentDidMount() {
     var token = localStorage.getItem("jwtToken");
-    console.log("Du kommer hit");
     setInterval(() => {
       fetch(APIMyPortfolioList, {
         method: "GET",

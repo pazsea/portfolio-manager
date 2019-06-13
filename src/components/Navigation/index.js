@@ -9,8 +9,6 @@ class Navigation extends Component {
   state = {};
 
   signOut() {
-    const { history } = this.props;
-    console.log("LOOOGGGAAA UTTT")
     localStorage.removeItem("jwtToken");
     window.location.reload()
   }
