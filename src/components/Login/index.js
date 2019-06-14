@@ -25,44 +25,18 @@ class Login extends Component {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password })
-    })
-      .then(response => response.json())
-      .then(({ token, data }) =>
-        localStorage.setItem("jwtToken", token, "data", data)
-      )
-      .then(() => window.location.reload())
-      .catch(function(response) {
-        if (response.status === "401") {
-          console.log("error");
-        }
-      });
-
-    //  fetch(APIGetToken, {
-    // method: "POST",
-    // headers: { "Content-Type": "application/json" },
-    // body: JSON.stringify({ email, password })
-    //       });
-    //       if (response.ok) {
-    //         console.log("!!SUCESS!!");
-    //         const { token } = await response.json();
-    //         localStorage.setItem("jwtToken", token);
-    //         console.log("i getz token " + token);
-    //         AuthStore.addToken(token);
-    //         // Router.push("/profile");
-    //       } else {
-    //         console.log("Login failed.");
-    //         let error = new Error(response.statusText);
-    //         error.response = response;
-
-    //         return Promise.reject(error);
-    //       }
-    //     } catch (error) {
-    //       console.error(
-    //         "You have an error in your code or there are Network issues.",
-    //         error
-    //       );
-    //       throw new Error(error);
-    //     }
+    }).then(response => {
+      if (response.ok) {
+        return response
+          .json()
+          .then(({ token, data }) =>
+            localStorage.setItem("jwtToken", token, "data", data)
+          )
+          .then(() => window.location.reload());
+      } else {
+        this.setState({ error: "Wrong email or password." });
+      }
+    });
   }
 
   render() {

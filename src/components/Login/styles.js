@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -74,5 +73,9 @@ export const LoginForm = styled.form`
   button:active {
     position: relative;
     top: 1px;
+  }
+  p {
+    margin-top: 5%;
+    color: red;
   }
 `;
