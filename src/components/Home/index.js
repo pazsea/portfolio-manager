@@ -3,6 +3,7 @@ import { APIUser } from "../../api";
 import { Wrapper } from "./styles";
 import buffett from "../../images/buffett.jpg";
 import Loading from "../Loading";
+import Error from "../Error";
 class Home extends Component {
   state = { loading: true, user: "" };
 
@@ -26,7 +27,7 @@ class Home extends Component {
           );
         } else {
           this.setState({
-            error: "Something when wrong with loading",
+            error: true,
             loading: false
           });
         }
@@ -40,7 +41,7 @@ class Home extends Component {
     if (loading) {
       return <Loading />;
     } else if (error) {
-      return <p>Something went wrong..</p>;
+      return <Error />;
     } else {
       return (
         <Wrapper>

@@ -3,6 +3,7 @@ import { APIMyPortfolioList } from "../../api";
 
 import Portfolio from "./Portfolio";
 import Loading from "../Loading";
+import Error from "../Error";
 
 class Portfolios extends Component {
   state = {
@@ -29,7 +30,7 @@ class Portfolios extends Component {
           );
         } else {
           this.setState({
-            error: "Something when wrong with loading",
+            error: true,
             loading: false
           });
         }
@@ -46,7 +47,7 @@ class Portfolios extends Component {
     if (loading) {
       return <Loading />;
     } else if (error) {
-      return <div>{error}</div>;
+      return <Error />;
     } else {
       return (
         <div>

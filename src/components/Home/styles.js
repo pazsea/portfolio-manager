@@ -46,4 +46,14 @@ export const Wrapper = styled.div`
       }
     }
   }
+
+  @media (max-width: 1000px) {
+    flex-direction:column;
+    h1 {
+    text-align:center;
+  }
+    ul {
+      margin:5% auto;
+    }
+  }
 `;

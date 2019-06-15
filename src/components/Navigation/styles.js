@@ -17,7 +17,7 @@ export const Nav = styled.nav`
       padding: 0;
       margin: 0;
       text-decoration: none;
-      color: white; 
+      color: white;
       border: 1px solid white;
       padding: 0.3em;
       font-size: 20px;
@@ -54,6 +54,14 @@ export const Nav = styled.nav`
   }
 
   /* // Extra large devices (large desktops, 1200px and up) */
-  @media (min-width: 1200px) {
+  @media (max-width: 1230px) {
+    width: 100%;
+    justify-content: space-evenly;
+    li {
+      a {
+        margin: 4% auto;
+        font-size: 16px;
+      }
+    }
   }
 `;
