@@ -29,9 +29,7 @@ class Login extends Component {
       if (response.ok) {
         return response
           .json()
-          .then(({ token }) =>
-            localStorage.setItem("jwtToken", token)
-          )
+          .then(({ token }) => localStorage.setItem("jwtToken", token))
           .then(() => window.location.reload());
       } else {
         this.setState({ error: "Wrong email or password." });
@@ -51,6 +49,7 @@ class Login extends Component {
           name="email"
           value={this.state.email}
           onChange={e => this.handleChange(e)}
+          required
         />
         <label htmlFor="password"> Password</label>
 
@@ -61,11 +60,15 @@ class Login extends Component {
           name="password"
           value={this.state.password}
           onChange={e => this.handleChange(e)}
+          required
+          
         />
-        <button type="submit">Login</button>
+        <button type="submit">Sign in</button>
 
-        <p className={`error ${this.state.error && "show"}`}>
-          {this.state.error && `Error: ${this.state.error}`}
+        <p className={` ${this.state.error && "show"}`}>
+          {this.state.error &&
+            `
+           ${this.state.error}`}
         </p>
       </LoginForm>
     );

@@ -14,8 +14,6 @@ class Details extends Component {
   componentDidMount() {
     var detailsId = this.props.AuthStore.detailsId;
     var token = localStorage.getItem("jwtToken");
-    console.log(APIMyPortfolioDetailID + detailsId + "/");
-    console.log("tooooken " + token);
 
     fetch(APIMyPortfolioDetailID + detailsId + "/", {
       method: "GET",

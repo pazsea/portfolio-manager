@@ -4,7 +4,7 @@ export const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
   margin: 10% auto;
-  width: 20%;
+  width: 40%;
   padding: 2%;
   border: 2px solid grey;
   border-radius: 10px;
@@ -21,6 +21,9 @@ export const LoginForm = styled.form`
   input {
     margin-bottom: 5%;
     padding: 2%;
+    :focus {
+      border-color: lightblue;
+    }
   }
   button {
     -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
@@ -44,13 +47,14 @@ export const LoginForm = styled.form`
     -webkit-border-radius: 6px;
     border-radius: 6px;
     border: 1px solid #dcdcdc;
+    margin: 3% 0 1% 0;
     display: inline-block;
     cursor: pointer;
     color: #666666;
     font-family: Arial;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: bold;
-    padding: 6px 24px;
+    padding: 10px 24px;
     text-decoration: none;
     text-shadow: 0px 1px 0px #ffffff;
   }
@@ -77,5 +81,6 @@ export const LoginForm = styled.form`
   p {
     margin-top: 5%;
     color: red;
+    text-align:center;
   }
 `;

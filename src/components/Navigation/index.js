@@ -10,6 +10,7 @@ class Navigation extends Component {
 
   signOut() {
     localStorage.removeItem("jwtToken");
+    this.props.history.push('/')
     window.location.reload()
   }
 
