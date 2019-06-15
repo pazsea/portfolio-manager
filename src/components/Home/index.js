@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { APIMyPortfolioList } from "../../api";
+import { APIUser } from "../../api";
 import { Wrapper } from "./styles";
 import buffett from "../../images/buffett.jpg";
 import Loading from "../Loading";
@@ -9,17 +9,17 @@ class Home extends Component {
   componentDidMount() {
     var token = localStorage.getItem("jwtToken");
     setInterval(() => {
-      fetch(APIMyPortfolioList, {
+      fetch(APIUser, {
         method: "GET",
         headers: {
           Authorization: "Bearer " + token
         }
       }).then(response => {
-        if (response.ok && response.results) {
+        if (response.ok) {
           return response.json().then(
             response =>
               this.setState({
-                user: response.results[0] ? response.results[0].user : "",
+                user: response,
                 loading: false
               })
             // console.log(response)
