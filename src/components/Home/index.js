@@ -4,7 +4,7 @@ import { Wrapper } from "./styles";
 import buffett from "../../images/buffett.jpg";
 import Loading from "../Loading";
 class Home extends Component {
-  state = { loading: true };
+  state = { loading: true, user: "" };
 
   componentDidMount() {
     var token = localStorage.getItem("jwtToken");
@@ -14,25 +14,33 @@ class Home extends Component {
         headers: {
           Authorization: "Bearer " + token
         }
-      })
-        .then(response => response.json())
-        .then(
-          response =>
-            this.setState({ user: response.results[0].user, loading: false })
-          // console.log(response)
-        )
-        .catch(function(response) {
-          if (response.status === "401") {
-            console.log("error");
-          }
-        });
+      }).then(response => {
+        if (response.ok && response.results) {
+          return response.json().then(
+            response =>
+              this.setState({
+                user: response.results[0] ? response.results[0].user : "",
+                loading: false
+              })
+            // console.log(response)
+          );
+        } else {
+          this.setState({
+            error: "Something when wrong with loading",
+            loading: false
+          });
+        }
+      });
     }, 500);
   }
 
   render() {
-    const { user, loading } = this.state;
+    const { user, loading, error } = this.state;
+
     if (loading) {
       return <Loading />;
+    } else if (error) {
+      return <p>Something went wrong..</p>;
     } else {
       return (
         <Wrapper>

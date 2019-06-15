@@ -29,8 +29,8 @@ class Login extends Component {
       if (response.ok) {
         return response
           .json()
-          .then(({ token, data }) =>
-            localStorage.setItem("jwtToken", token, "data", data)
+          .then(({ token }) =>
+            localStorage.setItem("jwtToken", token)
           )
           .then(() => window.location.reload());
       } else {
