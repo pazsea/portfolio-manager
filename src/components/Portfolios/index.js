@@ -11,35 +11,35 @@ class Portfolios extends Component {
   };
   componentDidMount() {
     var token = localStorage.getItem("jwtToken");
-
-    fetch(APIMyPortfolioList, {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + token
-      }
-    }).then(response => {
-      if (response.ok) {
-        return response.json().then(response =>
+    setTimeout(() => {
+      fetch(APIMyPortfolioList, {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + token
+        }
+      }).then(response => {
+        if (response.ok) {
+          return response.json().then(
+            response =>
+              this.setState({
+                results: response.results,
+                loading: false
+              })
+            // console.log(response)
+          );
+        } else {
           this.setState({
-            results: response.results,
+            error: true,
             loading: false
-          })
-          // console.log(response)
-        );
-      } else {
-        this.setState({
-          error: true,
-          loading: false
-        });
-      }
-    });
+          });
+        }
+      });
+    }, 500);
   }
 
   render() {
     const { results, loading, error } = this.state;
-    const {
-      AuthStore: { setId }
-    } = this.props;
+    const { AuthStore } = this.props;
 
     if (loading) {
       return <Loading />;
@@ -51,7 +51,11 @@ class Portfolios extends Component {
           {results
             ? results.map(result => {
                 return (
-                  <Portfolio setId={setId} key={result.id} result={result} />
+                  <Portfolio
+                    key={result.id}
+                    result={result}
+                    AuthStore={AuthStore}
+                  />
                 );
               })
             : null}

@@ -69,7 +69,7 @@ class App extends Component {
         <Route
           path={ROUTES.DETAILS}
           render={routeProps =>
-            AuthStore.detailsId.length ? (
+            AuthStore.positions.length ? (
               <Details {...routeProps} AuthStore={AuthStore} />
             ) : token ? (
               token.length ? (

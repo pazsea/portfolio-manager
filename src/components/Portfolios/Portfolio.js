@@ -44,7 +44,7 @@ class Portfolio extends Component {
         </div>
         <div className="wrapper">
           <div className="info">
-            <h2>Specific Portfolio</h2>
+            <h2>Portfolio {result.id} </h2>
 
             <InfoTable cellspacing="0">
               <tbody>
@@ -76,7 +76,10 @@ class Portfolio extends Component {
             </InfoTable>
           </div>
 
-          <Link to={ROUTES.DETAILS} onClick={() => this.props.setId(result.id)}>
+          <Link
+            to={ROUTES.DETAILS}
+            onClick={() => this.props.AuthStore.setPositions(result.position)}
+          >
             <button>View Details</button>
           </Link>
         </div>
