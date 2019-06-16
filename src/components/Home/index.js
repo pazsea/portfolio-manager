@@ -9,30 +9,24 @@ class Home extends Component {
 
   componentDidMount() {
     var token = localStorage.getItem("jwtToken");
-    setInterval(() => {
+
       fetch(APIUser, {
         method: "GET",
         headers: {
           Authorization: "Bearer " + token
         }
-      }).then(response => {
-        if (response.ok) {
-          return response.json().then(
-            response =>
-              this.setState({
-                user: response,
-                loading: false
-              })
-            // console.log(response)
-          );
-        } else {
-          this.setState({
-            error: true,
-            loading: false
-          });
-        }
-      });
-    }, 500);
+      })
+        .then(response => this.handleErrors(response))
+        .then(response => response.json())
+        .then(response => this.setState({ user: response, loading: false }));
+
+  }
+
+  handleErrors(response) {
+    if (!response.ok) {
+      this.setState({ error: true });
+    }
+    return response;
   }
 
   render() {

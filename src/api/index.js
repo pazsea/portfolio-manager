@@ -6,7 +6,7 @@ export const APIUser =
   "https://beta.stockzoom.com/api/v1/me/";
 
 export const APIMyPortfolioList =
-  "https://beta.stockzoom.com/api/v1/me/portfolios/";
+  "https://beta.stockzoom.com/api/v1/portfolios/";
 export const APIMyPortfolioDetailID =
   "https://beta.stockzoom.com/api/v1/me/portfolios/";
 export const APIInstrumentDetailID =
