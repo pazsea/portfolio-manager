@@ -49,12 +49,13 @@ class Portfolios extends Component {
       return (
         <div>
           {results
-            ? results.map(result => {
+            ? results.map((result, index) => {
                 return (
                   <Portfolio
                     key={result.id}
                     result={result}
                     AuthStore={AuthStore}
+                    index={index}
                   />
                 );
               })

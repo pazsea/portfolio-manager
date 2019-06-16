@@ -8,8 +8,8 @@ class AuthStore {
     this.access.push(token);
   };
 
-  @action setPositions = position => {
-    this.positions.push({ position });
+  @action setPositions = ( position ) => {
+    this.positions.splice(0, 1, position);
   };
 
   @computed

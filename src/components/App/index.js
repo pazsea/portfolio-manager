@@ -68,18 +68,30 @@ class App extends Component {
         />
         <Route
           path={ROUTES.DETAILS}
-          render={routeProps =>
-            AuthStore.positions.length ? (
-              <Details {...routeProps} AuthStore={AuthStore} />
-            ) : token ? (
-              token.length ? (
-                <Portfolios {...routeProps} AuthStore={AuthStore} />
+          render={
+            routeProps =>
+              AuthStore.positions.length && token ? (
+                <Details {...routeProps} AuthStore={AuthStore} />
+              ) : token ? (
+                token.length ? (
+                  <Portfolios {...routeProps} AuthStore={AuthStore} />
+                ) : (
+                  <Login {...routeProps} AuthStore={AuthStore} />
+                )
               ) : (
                 <Login {...routeProps} AuthStore={AuthStore} />
               )
-            ) : (
-              <Login {...routeProps} AuthStore={AuthStore} />
-            )
+
+            //   <Details {...routeProps} AuthStore={AuthStore} />
+            // ) : token ? (
+            //   token.length ? (
+            //     <Portfolios {...routeProps} AuthStore={AuthStore} />
+            //   ) : (
+            //     <Login {...routeProps} AuthStore={AuthStore} />
+            //   )
+            // ) : (
+            //   <Login {...routeProps} AuthStore={AuthStore} />
+            // )
           }
         />
       </Router>
