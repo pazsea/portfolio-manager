@@ -2,6 +2,12 @@ import React, { Component, Fragment } from "react";
 import { APIInstrumentDetailID } from "../../api";
 import { DetailDiv, InfoTable } from "./styles";
 
+import alpha from "../../images/alpha.png";
+import amazon from "../../images/amazon.png";
+import facebook from "../../images/facebook.png";
+import tesla from "../../images/tesla.png";
+import active from "../../images/active.png";
+
 import StarRatingComponent from "react-star-rating-component";
 
 import Loading from "../Loading";
@@ -9,6 +15,14 @@ import Error from "../Error";
 
 import graph from "../../images/graph.png";
 import Chart from "react-google-charts";
+
+const images = {
+  "Active Biotech AB": active,
+  "Tesla Inc.": tesla,
+  "Amazon.com Inc.": amazon,
+  "Facebook Inc.": facebook,
+  "Alphabet Inc.": alpha
+};
 
 class Details extends Component {
   state = { loading: false };
@@ -145,7 +159,10 @@ class Info extends Component {
 
                   <tr>
                     <td>
-                      <img src={graph} alt="" />
+                      <img
+                        src={images[position.instrument.name] || graph}
+                        alt=""
+                      />
                     </td>
                     <td>{position.allocation}</td>
                     <td>{position.instrument.price_today} </td>

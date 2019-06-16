@@ -54,7 +54,7 @@ class Portfolio extends Component {
 
                   <th>Available</th>
                   <th>Market value</th>
-                  <th>Totaljj</th>
+                  <th>Total</th>
                 </tr>
 
                 <tr>

@@ -8,11 +8,20 @@ export const InfoTable = styled.table`
   img {
     width: 100px;
   }
+
+  @media (max-width: 600px) {
+    tbody {
+      tr {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
 `;
 
 export const PortfolioDiv = styled.div`
   display: flex;
-  margin: 2% auto;
+  margin: 5% auto;
   width: 70%;
   padding: 1%;
   background: #e6e1c5;
@@ -58,12 +67,24 @@ export const PortfolioDiv = styled.div`
       }
     }
   }
+
+  @media (max-width: 1550px) {
+    flex-direction: column;
+    .wrapper {
+      width: 99%;
+      margin-top: 2%;
+    }
+  }
+
+  @media (max-width: 600px) {
+    width: 95%;
+  }
 `;
 
 export const DetailDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin: 2% auto;
+  margin: 5% auto;
   width: 70%;
   padding: 1%;
   background: #e6e1c5;
@@ -114,7 +135,6 @@ export const DetailDiv = styled.div`
     flex: 1 1 50%;
     /* border: 10px solid red; */
     .desc {
-
       font-style: italic;
 
       margin: 2% 0;
@@ -127,5 +147,18 @@ export const DetailDiv = styled.div`
       font-size: 1.5em;
       justify-content: space-between;
     }
+  }
+
+  @media (max-width: 1550px) {
+    flex-direction: column;
+    .wrapper {
+      width: 99%;
+      margin-top: 2%;
+    }
+  }
+
+  @media (max-width: 600px) {
+    width: 95%;
+
   }
 `;

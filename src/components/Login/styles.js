@@ -12,7 +12,6 @@ export const LoginForm = styled.form`
 
   label {
     font-size: 20px;
-    text-align: center;
     color: black;
     margin-bottom: 2%;
     font-family: Arial;
@@ -47,7 +46,7 @@ export const LoginForm = styled.form`
     -webkit-border-radius: 6px;
     border-radius: 6px;
     border: 1px solid #dcdcdc;
-    margin: 3% 0 1% 0;
+    margin: 3% 0 0 0;
     display: inline-block;
     cursor: pointer;
     color: #666666;
