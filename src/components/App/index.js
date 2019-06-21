@@ -38,7 +38,7 @@ class App extends Component {
           <Navigation AuthStore={AuthStore} />
 
           <Route
-            path={ROUTES.HOME}
+            exact path={ROUTES.HOME}
             render={routeProps => (
               <Home {...routeProps} AuthStore={AuthStore} />
             )}

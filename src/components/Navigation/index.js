@@ -20,7 +20,7 @@ class Navigation extends Component {
         <Nav navOpen={navOpen}>
           <li>
             <NavLink
-              to={ROUTES.HOME}
+              exact to={ROUTES.HOME}
               activeStyle={{
                 background: "white",
                 color: "black"
