@@ -53,7 +53,6 @@ class Login extends Component {
             localStorage.setItem("jwtToken", token);
             this.setState({ loading: false });
             this.props.AuthStore.toggleUserStatus();
-
             this.props.history.push(ROUTES.HOME);
             //Props to new route and authStore signed in
           } else {

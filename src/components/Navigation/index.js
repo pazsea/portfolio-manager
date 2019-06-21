@@ -10,8 +10,7 @@ class Navigation extends Component {
 
   signOut() {
     localStorage.removeItem("jwtToken");
-    this.props.history.push('/')
-    window.location.reload()
+    this.props.AuthStore.toggleUserStatus();
   }
 
   render() {
@@ -40,7 +39,7 @@ class Navigation extends Component {
             </NavLink>
           </li>
           <li>
-            <NavLink to={ROUTES.HOME} onClick={() => this.signOut()}>
+            <NavLink to={ROUTES.LOGIN} onClick={() => this.signOut()}>
               Sign Out <i className="fas fa-sign-out-alt" />
             </NavLink>
           </li>

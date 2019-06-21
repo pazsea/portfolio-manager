@@ -28,6 +28,14 @@ import * as ROUTES from "../../constants/routes";
 class App extends Component {
   state = {};
 
+  componentDidMount() {
+    const token = localStorage.getItem("jwtToken");
+    if (token) {
+      return this.props.AuthStore.toggleUserStatus();
+    } else {
+      return null;
+    }
+  }
   render() {
     const {
       AuthStore,
@@ -37,7 +45,7 @@ class App extends Component {
       return (
         <Router>
           <GlobalStyle />
-          <Navigation />
+          <Navigation AuthStore={AuthStore} />
 
           <Route
             path={ROUTES.HOME}
@@ -69,9 +77,7 @@ class App extends Component {
           <GlobalStyle />
           <Route
             exact
-            path={
-              ROUTES.LOGIN 
-            }
+            path={ROUTES.LOGIN}
             render={routeProps => (
               <Login {...routeProps} AuthStore={AuthStore} />
             )}
