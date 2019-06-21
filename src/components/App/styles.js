@@ -3,16 +3,14 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
 body {
   width: 100vw;
-  height: 100vh; 
+  height: 100%; 
   font-size: 16px;
   margin: 0;
   font-family: 'Josefin Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x:hidden;
+  overflow-x: hidden;
   background: #6290C3;
-
-
 }
 
 * {

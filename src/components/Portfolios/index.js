@@ -25,7 +25,7 @@ class Portfolios extends Component {
                 results: response.results,
                 loading: false
               })
-            // console.log(response)
+
           );
         } else {
           this.setState({
@@ -34,7 +34,7 @@ class Portfolios extends Component {
           });
         }
       });
-    }, 500);
+    }, 350);
   }
 
   render() {

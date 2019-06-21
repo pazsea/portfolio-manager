@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import { GlobalStyle } from "./styles";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 import Navigation from "../Navigation";
 import Login from "../Login";
@@ -12,17 +12,6 @@ import Home from "../Home";
 
 import * as ROUTES from "../../constants/routes";
 
-// @inject("AuthStore")
-// @observer
-// class App extends Component {
-//   render() {
-//     const { AuthStore } = this.props;
-//     const token = localStorage.getItem("jwtToken");
-//     return (
-
-//     );
-//   }
-// }
 @inject("AuthStore")
 @observer
 class App extends Component {
@@ -41,6 +30,7 @@ class App extends Component {
       AuthStore,
       AuthStore: { user }
     } = this.props;
+    const token = localStorage.getItem("jwtToken");
     if (user.authUser) {
       return (
         <Router>
@@ -81,6 +71,36 @@ class App extends Component {
             render={routeProps => (
               <Login {...routeProps} AuthStore={AuthStore} />
             )}
+          />
+          <Route
+            path={ROUTES.HOME}
+            render={routeProps =>
+              token ? (
+                <Home {...routeProps} AuthStore={AuthStore} />
+              ) : (
+                <Redirect to={ROUTES.LOGIN} />
+              )
+            }
+          />
+          <Route
+            path={ROUTES.PORTFOLIOS}
+            render={routeProps =>
+              token ? (
+                <Portfolios {...routeProps} AuthStore={AuthStore} />
+              ) : (
+                <Redirect to={ROUTES.LOGIN} />
+              )
+            }
+          />
+          <Route
+            path={ROUTES.DETAILS}
+            render={routeProps =>
+              AuthStore.positions.length && token ? (
+                <Details {...routeProps} AuthStore={AuthStore} />
+              ) : (
+                <Redirect to={ROUTES.PORTFOLIOS} />
+              )
+            }
           />
         </Router>
       );

@@ -9,6 +9,7 @@ export const LoginForm = styled.form`
   border: 2px solid grey;
   border-radius: 10px;
   background: #ffd3bf;
+  overflow: hidden;
 
   label {
     font-size: 20px;
@@ -80,6 +81,11 @@ export const LoginForm = styled.form`
   p {
     margin-top: 5%;
     color: red;
-    text-align:center;
+    text-align: center;
+  }
+
+  @media (max-width: 500px) {
+    width: 85%;
+    margin: 40% auto;
   }
 `;

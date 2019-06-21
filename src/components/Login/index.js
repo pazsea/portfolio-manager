@@ -33,13 +33,16 @@ class Login extends Component {
       if (response.ok) {
         return response.json().then(({ token }) => this.verifyToken(token));
       } else {
-        this.setState({ errorMessage: "Wrong email or password." });
+        this.setState(prevState => ({
+          loading: !prevState.loading,
+          errorMessage: "Wrong email or password."
+        }));
       }
     });
   }
 
   verifyToken(fetchedToken) {
-    console.log("fetched Token i verify " + fetchedToken);
+
     fetch(APITokenVerify, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -60,7 +63,7 @@ class Login extends Component {
           }
         });
       } else {
-        console.log("response" + response.status);
+
         this.setState({ loading: false, error: true });
       }
     });
@@ -102,7 +105,7 @@ class Login extends Component {
   }
 
   render() {
-    const { loading, error } = this.state;
+    const { loading, error, errorMessage } = this.state;
     if (loading) {
       return <Loading />;
     } else if (error) {
@@ -134,10 +137,10 @@ class Login extends Component {
           />
           <button type="submit">Sign in</button>
 
-          <p className={` ${this.state.error && "show"}`}>
-            {this.state.error &&
+          <p className={` ${errorMessage && "show"}`}>
+            {errorMessage &&
               `
-             ${this.state.error}`}
+             ${errorMessage}`}
           </p>
         </LoginForm>
       );

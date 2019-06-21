@@ -1,5 +1,4 @@
 import React from "react";
-// import Breakpoint, { BreakpointProvider } from "react-socks";
 import { css } from "@emotion/core";
 import { PropagateLoader } from "react-spinners";
 import { LoadingDiv } from "./styles";
@@ -15,8 +14,6 @@ export default function Loading(props) {
     <LoadingDiv>
       <PropagateLoader
         css={override}
-        // sizeUnit={"5px"}
-        // size={1}
         color={"#4056A1"}
         loading={props.loading}
       />

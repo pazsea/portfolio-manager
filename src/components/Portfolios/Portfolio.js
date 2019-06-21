@@ -32,13 +32,11 @@ class Portfolio extends Component {
               ["Year", 0, result.yield_ty === null ? 0 : result.yield_ty, 0]
             ]}
             options={{
-              // Material design options
               chart: {
                 title: "Yield status",
                 subtitle: "Yield status during different"
               }
             }}
-            // For tests
             rootProps={{ "data-testid": "2" }}
           />
         </div>
