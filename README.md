@@ -57,5 +57,3 @@ Also my goal was to implement Mobx as an globale state management.
  * Create the same project in Next.js
  
  
- ## 📓 Author
-Patrick Sjöberg <a href="https://github.com/pazsea">@pazsea</a> 
